@@ -4,7 +4,7 @@ import { listarUsuariosModel, criarUsuarioModel, excluirUsuarioModel } from "../
 export async function listarUsuarios(req, res){
     
     try{
-        const [usuarios] = await listarUsuariosModel()
+        const usuarios = await listarUsuariosModel()
         res.json(usuarios)
     }catch(erro){
         res.status(500).json({erro : erro.message})
