@@ -1,7 +1,7 @@
 const apiUrl = import.meta.env.VITE_API_URL
 
 export async function listarUsuarios(){
-    const resposta = await fetch(`?${apiUrl}/usuarios`)
+    const resposta = await fetch(`${apiUrl}/usuarios`)
     if(!resposta.ok){
         throw new Error('Erro ao listar usuários.')
     }
@@ -12,7 +12,7 @@ export async function listarUsuarios(){
 export async function criarUsuario(dadosUsuario){
     const resposta = await fetch(`${apiUrl}/usuarios`, {
         method: 'POST',
-        headers: {'Conten-Type': 'application/json'},
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(dadosUsuario)
     })
     if(!resposta.ok){

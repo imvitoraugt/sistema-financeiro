@@ -14,7 +14,7 @@ export async function criarUsuario(req, res) {
 
     const {usuario, senha, nome, email} = req.body
     try{
-        const [resposta] = await db.query(`INSERT INTO usuarios (usuario, snerha, nome, email) VALUES(?, ?, ?, ?)`,
+        const [resposta] = await db.query(`INSERT INTO usuarios (usuario, senha, nome, email) VALUES(?, ?, ?, ?)`,
             [usuario, senha, nome, email]
         )
         res.json({id : resposta.insertId})
