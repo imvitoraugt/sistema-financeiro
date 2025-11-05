@@ -1,10 +1,12 @@
 <script setup>
-import transacao from '../src/api/transacao.js'
+
 </script>
 
 <template>
-  <transacao/>
-</template>
+    <div>
+      <h1>Página em construção...</h1>
+    </div>
+  </template>
 
 <style scoped>
 

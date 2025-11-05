@@ -1,4 +1,4 @@
-import db from './banco.js'
+import db from '../banco.js'
 
 export async function consultarSaldoModel(usuarioId){
     const [resposta] = await db.query(`SELECT COALESCE(SUM(valor), 0) AS saldo FROM transacoes WHERE usuarios_id = ?`, [usuarioId])
@@ -27,10 +27,10 @@ export async function criarTransferenciaModel(origem_id, destino_id, valor, desc
         throw new Error('Saldo insuficiente.')
     } 
     await db.query(`INSERT INTO transacoes (usuarios_id, descricao, valor, categorias_id, usuario_destino_id) VALUES (?, ?, ?, ?, ?)`,
-        [origem_id, -valor, descricao, categoriaId, destino_id]
+        [origem_id,  descricao, -valor, categoriaId, destino_id]
     )
     await db.query(`INSERT INTO transacoes (usuarios_id, descricao, valor, categorias_id, usuario_destino_id) values(?, ?, ?, ?, ?)`,
-        [destino_id, valor, descricao, categoriaId, origem_id]
+        [destino_id, descricao, valor, categoriaId, origem_id]
     )
 
 }
