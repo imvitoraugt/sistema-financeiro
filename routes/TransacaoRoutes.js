@@ -1,6 +1,6 @@
 import express from 'express'
 
-import {listarTransacoes, criarTransacao} from '../controllers/TransacaoController.js'
+import {listarTransacoes, criarTransacao} from '../controllers/transacaoController.js'
 
 const router = express.Router()
 
