@@ -10,11 +10,12 @@ import usuarioRoutes from './routes/usuarioController.js'
 const app = express()
 app.use(express.json())
 
+//home por enquanto :)
 app.get('/', (req, res) =>{
   res.send('API Sistema Financeiro truando...')
 })
 
-
+//rotas de acesso
 app.use('/transacoes', transacaoRoutes)
 app.use('/usuarios', usuarioRoutes)
 app.use('/categorias', categoriaRoutes)
