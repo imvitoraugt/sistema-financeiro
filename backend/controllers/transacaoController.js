@@ -19,13 +19,13 @@ export async function criarTransacao(req, res){
   const {descricao, data, valor, tipo, usuarios_id, categorias_id, usuario_destino_id} = req.body
 
   try{
-      // Verificar se o usuário existe
+      // verifica se o usuário existe
       const [usuario] = await db.query(`SELECT id FROM usuarios WHERE id = ?`, [usuarios_id])
       if(usuario.length === 0){
           return res.status(400).json({erro : 'Usuário não encontrado.'})
       }
 
-      // Verificar a categoria
+      // verifica a categoria (saque, depóstio, transferencia)
       const [categoria] = await db.query(`SELECT id FROM categorias WHERE id = ?`, [categorias_id])
       if(categoria.length === 0){
           return res.status(400).json({erro : 'Categoria não encontrada.'})
@@ -43,7 +43,7 @@ export async function criarTransacao(req, res){
           if(!usuario_destino_id){
               return res.status(400).json({erro : 'Usuário destino não informado para transferência.'})
           }
-          // Verificar se usuário destino existe
+          // verifica se usuário que vai receber existe
           const [usuarioDestino] = await db.query(`SELECT id FROM usuarios WHERE id = ?`, [usuario_destino_id])
           if(usuarioDestino.length === 0){
               return res.status(400).json({erro : 'Usuário destino não encontrado.'})
