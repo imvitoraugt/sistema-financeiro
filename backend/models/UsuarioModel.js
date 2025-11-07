@@ -2,7 +2,7 @@ import db from '../banco.js'
 
 export async function criarUsuarioModel(usuario, senha, nome, email){
     const [resposta] = await db.query(`INSERT INTO usuarios (usuario, senha, nome, email) VALUES (?, ?, ?, ?)`,
-        [usuario, nome, senha, email]
+        [usuario, senha, nome, email]
     )
     return resposta.insertId
 

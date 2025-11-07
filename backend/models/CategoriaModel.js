@@ -1,10 +1,14 @@
 import db from "../banco.js";
 
-export async function criarCategoriaModel(descricao, status){
-    const [resposta] = await db.query(`INSERT INTO categorias (descricao, status) VALUES(?, ?)`,
-        [descricao, status]
-    )
-    return resposta.insertId
+export async function criarCategoriaModel(req, res){
+    const  {descricao, status} = req.body
+    try{
+
+        const id = await criarCategoriaModel(descricao, status)
+        res.json({id})
+    }catch(erro){
+        res.status(500).json({erro : erro.message})
+    }
 }
 
 export async function listarCategoriasModel(){

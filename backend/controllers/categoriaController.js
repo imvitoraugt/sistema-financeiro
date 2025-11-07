@@ -2,7 +2,6 @@ import db from "../banco.js";
 import { criarCategoriaModel, listarCategoriasModel } from "../models/CategoriaModel.js";
 
 export async function listarCategorias(req, res) {
-    
     try{
         const [categorias] = await listarCategoriasModel()
         res.json(categorias)
