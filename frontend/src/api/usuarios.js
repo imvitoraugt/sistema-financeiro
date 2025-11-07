@@ -23,6 +23,18 @@ export async function criarUsuario(userData){
 }
 
 export async function listarUsuarios(){
+    try{
+        const resposta = await fetch(`${apiUrl}/usuarios`)
+        if(!resposta.ok){
+            const errorD = await resposta.json()
+            throw new Error(errorD || 'Erro ao buscar usuários')
+        }
+        return await resposta.json()
+    }catch(error){
+        console.error('Erro no serviço listarUsuarios', error);
+        throw error
+        
+    }
 
 }
 

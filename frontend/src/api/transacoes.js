@@ -16,5 +16,22 @@ export async function listarTransacoes(){
 }
 
 export async function criarTransacao(dadosTransacao){
-    
+    try{
+        const respota = await fetch(`${apiUrl}/transacoes`,{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dadosTransacao)
+        })
+        if(!respota.ok){
+            const erroObj = await respota.json()
+            throw new Error(erroObj.erro || 'Erro ao criar transação.')
+        }
+        return await respota.json()
+    }catch(erro){
+        console.error('Erro no serviço criarTransacao', erro);
+        throw erro
+        
+    }
 }

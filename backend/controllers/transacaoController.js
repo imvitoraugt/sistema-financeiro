@@ -45,15 +45,15 @@ export async function criarTransacao(req, res){
           return res.status(400).json({erro : 'Categoria não encontrada.'})
       }
 
-      if(tipo === 'Deposito'){
+      if(tipo === 'deposito'){
           await criarDepositoModel(usuarios_id, valor, descricao, categorias_id, tipo)
           return res.status(200).json({mensagem: 'Depósito realizado com sucesso.'})
       
-      }else if(tipo === 'Daque'){
+      }else if(tipo === 'saque'){
           await criarSaqueModel(usuarios_id, valor, descricao, categorias_id, tipo)
           return res.status(200).json({mensagem: 'Saque realizado com sucesso.'})
 
-      }else if(tipo === 'Transferencia'){
+      }else if(tipo === 'transferencia'){
           if(!usuario_destino_id){
               return res.status(400).json({erro : 'Usuário destino não informado para transferência.'})
           }
